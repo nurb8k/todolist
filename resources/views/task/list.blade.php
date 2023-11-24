@@ -23,20 +23,36 @@
         </form>
     </div>
 
-    <div class="container col-4 bg-grey mt-5 p-4 border">
+    <div class="container col-4 bg-grey mt-5 p-4 border d-flex gap-3">
         @foreach($tasks as $task)
-            <div class="task-item">
+            <div class="task-item mb-4 border rounded p-3">
+                <p>Todo: {{$loop->iteration}}</p>
                 <form method="post" action="{{route('tasks.update', $task->id )}}">
                     @csrf
-                    <input type="checkbox" name="completed" class="task-checkbox" {{ $task->completed ? 'checked' : '' }}>
-                    <input name="title" value="{{ $task->title }}" >
-                    <input name="desc" value="{{ $task->desc }}" type="text">
 
-                    <button class="w-100 btn btn-lg btn-warning btn-sm" type="submit">update</button>
+                    <div class="form-group pt-3">
+                        <label for="exampleInputPassword1">Status</label>
+                        <input type="checkbox" name="completed" class="task-checkbox" {{ $task->completed ? 'checked' : '' }}>
+                    </div>
+
+
+                    <div class="form-group pt-3">
+                        <label for="exampleInputPassword1">Title</label>
+                        <input type="text" required name="title"  class="form-control" id="exampleInputPassword1" value="{{ $task->title }}" placeholder="{{ $task->title }}">
+                    </div>
+
+
+                    <div class="form-group pt-3">
+                        <label for="exampleInputPassword1">Description</label>
+                        <input type="text" required name="desc" value="{{ $task->desc }}"  class="form-control" id="exampleInputPassword1" placeholder="title">
+                    </div>
+                    <div class="form-group pt-3">
+                        <button class="w-100 btn btn-lg btn-success btn-sm text-light col-1" type="submit">Save</button>
+                    </div>
                 </form>
-                <form method="post" action="{{route('tasks.destroy',$task->id)}}">
+                <form method="post" class="p-2" action="{{route('tasks.destroy',$task->id)}}">
                     @csrf
-                    <button class="w-100 btn btn-lg btn-danger btn-sm" type="submit">delete</button>
+                    <button class="w-100 btn btn-lg btn-danger btn-sm" type="submit">Delete</button>
                 </form>
             </div>
         @endforeach

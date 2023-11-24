@@ -31,7 +31,6 @@ Route::group(['middleware' => ['guest']], function() {
 
 Route::group(['middleware' => ['auth']], function() {
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout.post');
-
     Route::get('/task-list', [TaskController::class, 'list'])->name('tasks.list');
     Route::post('/task-post', [TaskController::class, 'store'])->name('tasks.store');
     Route::post('/task-update/{task}', [TaskController::class, 'update'])->name('tasks.update');

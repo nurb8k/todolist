@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 
 class LoginRequest extends FormRequest
@@ -27,5 +28,13 @@ class LoginRequest extends FormRequest
             'nickname' => 'required|string',
             'password' => 'required|string',
         ];
+    }
+
+    protected function failedValidation(Validator $validator)
+    {
+        return response()->json([
+            'success' => false,
+            'message' => $validator->errors()->first()
+        ], 422);
     }
 }

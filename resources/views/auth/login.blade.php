@@ -10,12 +10,12 @@
             <span class="text-danger text-left p-2">{{ $errors->first('error') }}</span>
         @endif
         <div class="form-group form-floating mb-3">
-            <input type="text" class="form-control" name="nickname" value="{{ old('nickname') }}" placeholder="Nickname" required="required" autofocus>
+            <input type="text" class="form-control" name="nickname" value="{{ old('nickname') }}" placeholder="Nickname"  autofocus>
             <label for="floatingName">Nickname</label>
         </div>
 
         <div class="form-group form-floating mb-3">
-            <input type="password" class="form-control" name="password" value="{{ old('password') }}" placeholder="Password" required="required">
+            <input type="password" class="form-control" name="password" value="{{ old('password') }}" placeholder="Password" >
             <label for="floatingPassword">Password</label>
         </div>
 

@@ -27,10 +27,14 @@ class RegisterRequest extends FormRequest
         return [
             'name' => 'required|string|min:3|max:255',
             'surname' => 'required|string|min:3|max:255',
-            'nickname' => 'required|string|min:3|max:255,unique:users,nickname',
+            'nickname' => 'required|string|min:3|max:255|unique:users,nickname',
             'password' => 'required|min:6',
             'password_confirmation' => 'required|same:password'
         ];
+    }
+    protected function failedValidation(Validator $validator)
+    {
+       return redirect()->back()->with('error', 'Error!')->withErrors($validator)->withInput();
     }
 
 
